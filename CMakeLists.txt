@@ -10,6 +10,7 @@ add_subdirectory(glfw)
 # EXE
 add_executable(Chess
     main.cpp
+    pgn.cpp          # <-- moduł parsera PGN
     glad/src/gl.c
 )
 
@@ -37,3 +38,14 @@ add_custom_command(TARGET Chess POST_BUILD
         "$<TARGET_FILE_DIR:Chess>/models"
     COMMENT "Kopiowanie folderu z modelami do katalogu budowania..."
 )
+
+# (Opcjonalnie) skopiuj plik partii game.pgn obok programu, jeśli istnieje.
+# Dzięki temu aplikacja znajdzie go bez podawania ścieżki w argumencie.
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/game.pgn")
+    add_custom_command(TARGET Chess POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${CMAKE_CURRENT_SOURCE_DIR}/game.pgn"
+            "$<TARGET_FILE_DIR:Chess>/game.pgn"
+        COMMENT "Kopiowanie pliku game.pgn..."
+    )
+endif()
