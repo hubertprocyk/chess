@@ -288,7 +288,7 @@ int main() {
     // ==============================================================================
     glUniform1i(glGetUniformLocation(shaderProgram, "useTexture"), 0);
 
-    // --- GLOBALNE PARAMETRY DLA ARmii ---
+    // --- GLOBALNE PARAMETRY DLA Armii ---
     // Zwiększamy skalę o 20% (1.2 zamiast 1.0) jak prosiłeś
     float globalObjScale = 1.2f;
 
