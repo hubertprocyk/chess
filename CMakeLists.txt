@@ -29,9 +29,7 @@ if(WIN32)
     target_link_libraries(Chess opengl32)
 endif()
 
-# KOPIOWANIE FOLDERU Z MODELAMI
-# Ta komenda uruchomi się po każdym udanym zbudowaniu pliku Chess.exe
-# i skopiuje folder 'models' bezpośrednio tam, gdzie powstał program.
+# Kopiowanie folderu z modelami
 add_custom_command(TARGET Chess POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         "${CMAKE_CURRENT_SOURCE_DIR}/models"
@@ -39,13 +37,10 @@ add_custom_command(TARGET Chess POST_BUILD
     COMMENT "Kopiowanie folderu z modelami do katalogu budowania..."
 )
 
-# (Opcjonalnie) skopiuj plik partii game.pgn obok programu, jeśli istnieje.
-# Dzięki temu aplikacja znajdzie go bez podawania ścieżki w argumencie.
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/game.pgn")
-    add_custom_command(TARGET Chess POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "${CMAKE_CURRENT_SOURCE_DIR}/game.pgn"
-            "$<TARGET_FILE_DIR:Chess>/game.pgn"
-        COMMENT "Kopiowanie pliku game.pgn..."
-    )
-endif()
+# Kopiowanie folderu z grami
+add_custom_command(TARGET Chess POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/games"
+        "$<TARGET_FILE_DIR:Chess>/games"
+    COMMENT "Kopiowanie folderu z grami do katalogu budowania..."
+)

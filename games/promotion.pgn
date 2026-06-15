@@ -1,0 +1,13 @@
+[Event "Promotion Example"]
+[Site "?"]
+[Date "2026.06.15"]
+[Round "?"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+
+1. a4 h5
+2. a5 h4
+3. a6 h3
+4. axb7 hxg2
+5. bxa8=Q gxh1=N *
